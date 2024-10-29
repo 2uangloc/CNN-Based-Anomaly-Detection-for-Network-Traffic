@@ -8,10 +8,10 @@ Ping of Death là một kiểu tấn công mạng được thực hiện bằng 
 SYN FLOOD là 1 dạng tấn công DoS hoặc DDoS. Attacker gửi một lượng lớn yêu cầu kết nối (SYN packets) đến một máy Web Server, nhưng không bao giờ hoàn thành quá trình thiết lập kết nối bằng cách không gửi các gói tin ACK để xác nhận kết nối.
 UDP Flood là một loại tấn công mạng thuộc danh sách tấn công DoS hoặc DDoS. Attacker gửi một lượng lớn yêu cầu UDP đến máy Web Server, với mục đích làm quá tải và làm gián đoạn hoạt động của máy đó.
 
-![image](https://github.com/user-attachments/assets/ba0179a1-624f-4b44-a884-bf8314755294)
 Bước 2: Thu thập log từ snort
- 
+ ![image](https://github.com/user-attachments/assets/ba0179a1-624f-4b44-a884-bf8314755294)
 Hình 1: Dữ liệu filelog thu thập từ snort
+
 Sau khi Snort đã thu thập log, ta thực hiện tải log bằng giao thức SSH từ máy thật tới tường lửa pfSense.
 
  ![image](https://github.com/user-attachments/assets/48c48f54-e491-4e41-b321-0e3f98098db7)
