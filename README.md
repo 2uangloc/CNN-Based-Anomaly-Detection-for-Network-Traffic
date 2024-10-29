@@ -19,19 +19,19 @@ Hình 2: Quá trình tải dữ liệu filelog về máy
 
 Bước 3:  Sử dụng mô hình 1D – CNN để huấn luyện dữ liệu:
 
-Đọc dữ liệu từ file log, tạo các feature để gán vào từng cột dữ liệu
+•	Đọc dữ liệu từ file log, tạo các feature để gán vào từng cột dữ liệu
 
-Tiền xử lý dữ liệu
+•	Tiền xử lý dữ liệu
 
-Chia dữ liệu thành tập train và test (80-20) tổng dữ liệu từ dataset là 121850
+•	Chia dữ liệu thành tập train và test (80-20) tổng dữ liệu từ dataset là 121850
 
-Tập train 80% (97480 dòng)
+•	Tập train 80% (97480 dòng)
 
-Tập test 20% (24370 dòng)
+•	Tập test 20% (24370 dòng)
 
-Sau khi huấn luyện dùng tập test để đánh giá mô hình dự đoán
+•	Sau khi huấn luyện dùng tập test để đánh giá mô hình dự đoán
 
-Dùng mô hình đã huấn luyện để đưa ra dự đoán 
+•	Dùng mô hình đã huấn luyện để đưa ra dự đoán 
 
 Bước 4: Đưa ra kết luận 
 
@@ -161,28 +161,41 @@ Hình 20: Mô hình thuật toán CNN1D
 
 Các thông số chi tiết của kết quả mô hình CNN1D:
 •	conv1d (None, 13, 32): đây là lớp convolution 1D. None là batch size, 13 là chiều dài đầu ra và số lượng bộ lọc là 32. Param là 128.
+
 •	max_pooling1d (None, 6, 32): là lớp max pooling 1D, giúp giảm kích thước của dữ liệu và đồng thời giữ lại thông tin quan trọng. None là batch size, 6 là chiều dài đầu ra và số lượng bộ lọc là 32. Param là 0 vì lớp này chỉ là lớp tuyến tính.
+
 •	conv1d_1 (None, 4, 64): một lớp convolution 1D khác. None là batch size, 4 là chiều dài đầu ra và số lượng bộ lọc là 64. Param là 6208.
+
 •	max_pooling1d_1 (None, 2, 64): một lớp max pooling 1D khác. None là batch size, 2 là chiều dài đầu ra và số lượng bộ lọc là 64. Param là 0.
+
 •	flatten (None, 128: là lớp làm phẳng dữ liệu, chuyển dữ liệu thành vector 1 chiều. None là batch size, 128 là số lượng đơn vị đầu ra. Param là 0.
+
 •	dense (None, 128): là lớp fully connected. None là batch size, 128 là số lượng đơn vị đầu ra. Param là 16512.
+
 •	dropout (None, 128): là lớp dropout, giúp ngăn chặn overfitting. None là batch size, 128 là số lượng đơn vị đầu ra. Param là 0.
+
 •	dense_1 (None, 4): là lớp fully connected với 4 đơn vị đầu ra. None là batch size, 4 là số lượng đơn vị đầu ra (hay còn gọi là nhãn). Param là 516.
+
 •	Total params: là tổng tham số của mô hình, bao gồm cả trọng số và bias là 23364.
+
 •	Trainable params: là tổng tham số có thể được cập nhật trong quá trình huấn luyện. Toàn bộ 23364 tham số đều được huấn luyện
+
 •	Non-trainable params: là tổng số tham số không thể được cập nhật trong quá trình huấn luyện. Trong mô hình này không có tham số nào không được huấn luyện.
+
 
  ![image](https://github.com/user-attachments/assets/57164228-ab8a-4e7f-a27d-ac6d81553866)
 
 Hình 21: Kết quả của mô hình CNN1D
 
 2.14 Biên dịch mô hình 
+
 Quá trình huấn luyện sử dụng gradient descent để điều chỉnh trọng số của mô hình dựa trên giá trị mất mát (categorical_crossentropy), và thuật toán tối ưu hóa (Adam) được sử dụng để thực hiện điều này.
  
  ![image](https://github.com/user-attachments/assets/44fea0a4-03a9-4fbc-9104-e4ff18c16a56)
 Hình 22: Biên dịch mô hình
 
 2.15 Huấn luyện mô hình
+
 Quá trình huấn luyện sẽ chạy qua 50 epochs, mỗi epoch sẽ được chia thành các batch có kích thước 32 mẫu. Mỗi lần qua một batch, mô hình sẽ điều chỉnh trọng số của nó dựa trên gradient của hàm mất mát (categorical crossentropy) và sử dụng thuật toán tối ưu hóa Adam. Hiệu suất của mô hình trên tập kiểm định sẽ được đánh giá sau mỗi epoch để theo dõi quá trình huấn luyện và tránh overfitting. Kết quả của quá trình huấn luyện được lưu vào biến his.
 
  ![image](https://github.com/user-attachments/assets/393cbe09-518d-41e2-aec0-34598a3138a3)
@@ -193,15 +206,21 @@ Hình 23: Huấn luyện mô hình
 Hình 24: Một phần của kết quả của huấn luyện mô hình
 
 2.16 Dự đoán mô hình
+
 •	Kết quả cho thấy số lượng batch (762/762) đã được sử dụng trong quá trình huấn luyện. Trong mỗi epoch, mô hình được cập nhật dựa trên một số lượng batch của dữ liệu huấn luyện. 
+
 •	Thời gian dự kiến hoàn thành mỗi epoch là 2 giây cho mỗi epoch (2s 2ms/step). 
+
 •	Giá trị mất mát (loss) là 0.0019 và độ chính xác (accurary) là 0.9998 trên tập huấn luyện sau khi hoàn thành một epoch cuối cùng của quá trình huấn luyện.
+
 •	Kết quả của tập kiểm thử là Loss: 0.001865588128566742 và Accurary: 99.97948408126831%
+
 
  ![image](https://github.com/user-attachments/assets/7f0a8690-952b-48c9-a591-71bf0a79d884)
 Hình 25: Dự đoán mô hình 
 
 2.17 Biểu đồ thể hiện độ chính xác và mất mát của dữ liệu huấn luyện và kiểm thử
+
 Độ chính xác của mô hình sau mỗi lần train có thể khác nhau, nhưng sẽ không có chênh lệch quá nhiều. Biểu đồ bên dưới cho thấy dấu hiệu tích cực về việc mô hình đang học được và có khả năng tổng quát hóa tốt. Điều này đảm bảo mô hình không chỉ nhớ trên tập dữ liệu huấn luyện mà còn có khả năng dự đoán chính xác trên tập dữ liệu mới. Đồng thời giúp tránh bị Overfitting.
 
  ![image](https://github.com/user-attachments/assets/e5b04a14-12d5-4aae-8b26-64f1b430a69b)
@@ -209,8 +228,11 @@ Hình 25: Dự đoán mô hình
 Hình 26: Biểu đồ thể hiện sự chính xác của tập dữ liệu huấn luyện và kiểm thử
 
 Biểu đồ bên dưới thể hiện rằng, ban đầu loss của tập huấn luyện giảm rất nhanh, sau 5 epoch thì không giảm nữa. So với loss của tập kiểm thử thì không chênh lệch quá nhiều cho thấy đó là dấu hiệu tích cực như sau:
+
 •	Khả năng tổng quát tốt hơn: Mô hình không chỉ học được từ dữ liệu huấn luyện mà còn có khả năng áp dụng kiến thức đã học được cho dữ liệu mới.
+
 •	Tránh Overfitting: Overfitting xảy ra khi mô hình quá tinh chỉnh cho dữ liệu huấn luyện và không thể tổng quát tốt cho dữ liệu mới. Nếu loss trên tập kiểm thử tăng lên mạnh so với loss trên tập huấn luyện, có thể là dấu hiệu của overfitting.
+
 
  ![image](https://github.com/user-attachments/assets/23dc48f6-4257-49b5-bed4-219221c7e9c1)
 
