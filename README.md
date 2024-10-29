@@ -178,8 +178,10 @@ Biểu đồ bên dưới thể hiện rằng, ban đầu loss của tập huấ
 
  ![image](https://github.com/user-attachments/assets/23dc48f6-4257-49b5-bed4-219221c7e9c1)
 Hình 1.28 Biểu đồ thể hiện sự mất mát của tập dữ liệu huấn luyện và kiểm thử
- 
+
+
 CHƯƠNG 2. KẾT LUẬN 2
+
 KẾT LUẬN VÀ HƯỚNG PHÁT TRIỂN
 Đề tài “nghiên cứu và triển khai thuật toán máy học ứng dụng dò tìm lưu lượng mạng bất thường” đã gợi ý cho nhóm một mô hình huấn luyện dữ liệu để dòm tìm đó là 1D-CNN. Mô hình 1D-CNN có thể xây dựng được các hệ thống phân loại với độ chính xác cao và được lấy cảm hứng từ tế bào thần kinh trong bộ não con người. Cho thấy 1D-CNN là mô hình được sử dụng để nâng cao hiệu quả dự báo và đã được ứng dụng rộng rãi trong đa lĩnh vực. Do đó, nhóm có đề xuất hướng phát triển dựa trên mô hình 1D-CNN đã thực hiện như sau:
 
