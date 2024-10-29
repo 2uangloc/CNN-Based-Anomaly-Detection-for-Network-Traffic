@@ -18,13 +18,13 @@ Sau khi Snort đã thu thập log, ta thực hiện tải log bằng giao thức
 Hình 2: Quá trình tải dữ liệu filelog về máy
 
 Bước 3:  Sử dụng mô hình 1D – CNN để huấn luyện dữ liệu:
-•	Đọc dữ liệu từ file log, tạo các feature để gán vào từng cột dữ liệu
-•	Tiền xử lý dữ liệu
-•	Chia dữ liệu thành tập train và test (80-20) tổng dữ liệu từ dataset là 121850
-•	Tập train 80% (97480 dòng)
-•	Tập test 20% (24370 dòng)
-•	Sau khi huấn luyện dùng tập test để đánh giá mô hình dự đoán
-•	Dùng mô hình đã huấn luyện để đưa ra dự đoán 
+Đọc dữ liệu từ file log, tạo các feature để gán vào từng cột dữ liệu
+Tiền xử lý dữ liệu
+Chia dữ liệu thành tập train và test (80-20) tổng dữ liệu từ dataset là 121850
+Tập train 80% (97480 dòng)
+Tập test 20% (24370 dòng)
+Sau khi huấn luyện dùng tập test để đánh giá mô hình dự đoán
+Dùng mô hình đã huấn luyện để đưa ra dự đoán 
 Bước 4: Đưa ra kết luận 
 2. Triển khai thực nghiệm
 2.1 Thêm các thư viện quan trọng
