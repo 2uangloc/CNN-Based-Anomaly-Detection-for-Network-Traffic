@@ -36,12 +36,14 @@ From keras.layers Import Conv1D, Activation, MaxPooling1D, Flatten, GRU, Average
 Có tổng cộng 15 trường/thuộc tính: <Timestamp>, <GID>, < SID>, <Event Ref ID>, <Message>, <Protocol>, <Src IP>, <Src Port >, <Dst IP>, <Dst Port>, <Extra Port>, <Description>, <Priority>, <Event>, <Action>
 
  ![image](https://github.com/user-attachments/assets/84fa7ce2-57e8-4ea8-ac0d-62834636d669)
+
 Hình 3: Tạo thuộc tính giá trị
 
 2.3 Đọc dữ liệu từ file log
 Dùng thư viện panda để đọc file log dưới dạng CSV và in ra màn hình.
 
  ![image](https://github.com/user-attachments/assets/18c0f9b1-3696-47f5-a52e-f2ce91ec3763)
+
 Hình 4: Đọc dữ liệu
 
  ![image](https://github.com/user-attachments/assets/b0fc1264-f59d-46a3-8a7c-ba3938739670)
@@ -81,11 +83,13 @@ Hình 11: Dữ liệu sau khi đã thay đổi
 Chỉ giữ các cột có nhiều hơn 1 giá trị do các giá trị giống nhau không cung cấp được các dữ liệu hữu ích trong quá trình huấn luyện.
 
  ![image](https://github.com/user-attachments/assets/213d5406-ca56-4e02-854b-c9fd95ec297d)
+
 Hình 12: Hàm xóa các cột có duy nhất một giá trị
 
 Dữ liệu sau khi đã xóa các cột như: GID, Event Ref ID, Dst Port, Event.
 
  ![image](https://github.com/user-attachments/assets/f70bbc85-a2fb-4b4f-b3ba-3f8d7c6d60ca)
+
 Hình 13: Dữ liệu sau đã xử lý 
 
 2.9 Tạo cột “Intrusion” và mã hóa dữ liệu
@@ -107,6 +111,7 @@ Hình 16: Dữ liệu sau khi đã mã hóa one-hot
 Trước tiên ta biến đổi nhãn “Intrusion” thành mảng numpy và gán cho giá trị Y_data. Sau đó ta tạo mảng X_data bằng cách bỏ cột “Intrusion”. Điều này đang chuẩn bị cho các đặc trưng để huấn luyện mô hình. 
 
  ![image](https://github.com/user-attachments/assets/fd7578d5-ed94-46fe-8009-e07dbe651e87)
+
 Hình 17: Chia dữ liệu thành hai phần
 
 Tại đây ta thực hiện phân chia dữ liệu là 80% cho phần train và 20% còn lại cho phần test. random_state=42 đảm bảo rằng nếu ta chạy code này nhiều lần sẽ cho ra kết quả chia giống nhau.
@@ -124,6 +129,7 @@ Hình 19: Chuẩn hóa dữ liệu 
 Ta khởi tạo mô hình bằng Sequential (Model = Sequential()), sau đó dùng phương thức add để thêm các layer. Sau khi đưa vào các lớp tạo thành dữ liệu khối, thực hiện duỗi dữ liệu thành vector model.add(Flatten()). Ta tiếp tục thực hiện biến đổi dữ liệu từ nhiều chiều thành 4 chiều model.add(Dense(4)).
  
  ![image](https://github.com/user-attachments/assets/2a4fcac2-6b40-41c3-ad0e-5714ef6e4a53)
+
 Hình 20: Mô hình thuật toán CNN1D
 
 Các thông số chi tiết của kết quả mô hình CNN1D:
@@ -140,6 +146,7 @@ Các thông số chi tiết của kết quả mô hình CNN1D:
 •	Non-trainable params: là tổng số tham số không thể được cập nhật trong quá trình huấn luyện. Trong mô hình này không có tham số nào không được huấn luyện.
 
  ![image](https://github.com/user-attachments/assets/57164228-ab8a-4e7f-a27d-ac6d81553866)
+
 Hình 21: Kết quả của mô hình CNN1D
 
 2.14 Biên dịch mô hình 
@@ -155,6 +162,7 @@ Quá trình huấn luyện sẽ chạy qua 50 epochs, mỗi epoch sẽ được 
 Hình 23: Huấn luyện mô hình
 
  ![image](https://github.com/user-attachments/assets/45069b81-041b-4bad-ab15-76f0f251722f)
+
 Hình 24: Một phần của kết quả của huấn luyện mô hình
 
 2.16 Dự đoán mô hình
@@ -170,6 +178,7 @@ Hình 25: Dự đoán mô hình
 Độ chính xác của mô hình sau mỗi lần train có thể khác nhau, nhưng sẽ không có chênh lệch quá nhiều. Biểu đồ bên dưới cho thấy dấu hiệu tích cực về việc mô hình đang học được và có khả năng tổng quát hóa tốt. Điều này đảm bảo mô hình không chỉ nhớ trên tập dữ liệu huấn luyện mà còn có khả năng dự đoán chính xác trên tập dữ liệu mới. Đồng thời giúp tránh bị Overfitting.
 
  ![image](https://github.com/user-attachments/assets/e5b04a14-12d5-4aae-8b26-64f1b430a69b)
+
 Hình 26: Biểu đồ thể hiện sự chính xác của tập dữ liệu huấn luyện và kiểm thử
 
 Biểu đồ bên dưới thể hiện rằng, ban đầu loss của tập huấn luyện giảm rất nhanh, sau 5 epoch thì không giảm nữa. So với loss của tập kiểm thử thì không chênh lệch quá nhiều cho thấy đó là dấu hiệu tích cực như sau:
@@ -177,6 +186,7 @@ Biểu đồ bên dưới thể hiện rằng, ban đầu loss của tập huấ
 •	Tránh Overfitting: Overfitting xảy ra khi mô hình quá tinh chỉnh cho dữ liệu huấn luyện và không thể tổng quát tốt cho dữ liệu mới. Nếu loss trên tập kiểm thử tăng lên mạnh so với loss trên tập huấn luyện, có thể là dấu hiệu của overfitting.
 
  ![image](https://github.com/user-attachments/assets/23dc48f6-4257-49b5-bed4-219221c7e9c1)
+
 Hình 27: Biểu đồ thể hiện sự mất mát của tập dữ liệu huấn luyện và kiểm thử
 
 
