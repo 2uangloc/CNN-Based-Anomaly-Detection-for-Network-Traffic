@@ -40,10 +40,15 @@ Bước 4: Đưa ra kết luận
 2.1 Thêm các thư viện quan trọng
 
 Import numpy as np
+
 Import pandas as pd
+
 Import matplotlib.pyplot as plt
-From keras.layers Import Conv1D, Activation, MaxPooling1D, Flatten, GRU, AveragePooling1D, Dense, Dropout.
+
+From keras.layers Import Conv1D, Activation, MaxPooling1D, Flatten, GRU, AveragePooling1D, Dense, Dropout
+
 2.2 Tạo các thuộc tính cho dữ liệu log
+
 Có tổng cộng 15 trường/thuộc tính: <Timestamp>, <GID>, < SID>, <Event Ref ID>, <Message>, <Protocol>, <Src IP>, <Src Port >, <Dst IP>, <Dst Port>, <Extra Port>, <Description>, <Priority>, <Event>, <Action>
 
  ![image](https://github.com/user-attachments/assets/84fa7ce2-57e8-4ea8-ac0d-62834636d669)
@@ -51,6 +56,7 @@ Có tổng cộng 15 trường/thuộc tính: <Timestamp>, <GID>, < SID>, <Event
 Hình 3: Tạo thuộc tính giá trị
 
 2.3 Đọc dữ liệu từ file log
+
 Dùng thư viện panda để đọc file log dưới dạng CSV và in ra màn hình.
 
  ![image](https://github.com/user-attachments/assets/18c0f9b1-3696-47f5-a52e-f2ce91ec3763)
@@ -61,6 +67,7 @@ Hình 4: Đọc dữ liệu
 Hình 5: Dữ liệu sau khi đọc
 
 2.4 Chia và xóa các cột của dữ liệu
+
 Chia cột nào có dạng IP thành 4 cột để thuận tiện cho việc nhân tích chập, đồng thời loại bỏ các cột không cần thiết như Timestamp, Src Ip, Dst IP và Action.
 
  ![image](https://github.com/user-attachments/assets/1a332a83-cc07-4393-84fd-c0dccf5eb455)
@@ -70,18 +77,21 @@ Hình 6: Chia cột và xóa cột dữ liệu
 Hình 7: Dữ liệu sau khi được xử lý
 
 2.5 Phân phối số lượng nhãn tấn công
+
 Phân phối lại các lớp nhãn để thuận tiện cho việc mã hóa
 
  ![image](https://github.com/user-attachments/assets/6d359d4e-19e4-480f-bc0e-5b556437db23)
 Hình 8: Phân phối các lớp nhãn
 
 2.6 Vẽ biểu đồ
+
 Biểu đồ thể hiện số lượng tấn công, phần “UDP Flood” có số lượng nhiều nhất và “Normal” có số lượng ít nhất
 
  ![image](https://github.com/user-attachments/assets/2fdf23b8-3ff6-4986-be75-5f40d8f2cab3)
 Hình 9: Biểu đồ các loại tấn công
 
 2.7 Thay đổi các giá trị NaN trong dữ liệu
+
 Tính giá trị trung bình của hai cột “Src Port” và “Dst Port”. Sau đó gán giá trị cho mỗi dòng của dữ liệu.
 
  ![image](https://github.com/user-attachments/assets/b8bf8512-834d-41a7-b654-6e93f53442c7)
@@ -91,6 +101,7 @@ Hình 10: Hàm tính trung bình trong cột dữ liệu “Src Port” và “D
 Hình 11: Dữ liệu sau khi đã thay đổi
 
 2.8 Xóa các cột có duy nhất một giá trị
+
 Chỉ giữ các cột có nhiều hơn 1 giá trị do các giá trị giống nhau không cung cấp được các dữ liệu hữu ích trong quá trình huấn luyện.
 
  ![image](https://github.com/user-attachments/assets/213d5406-ca56-4e02-854b-c9fd95ec297d)
@@ -104,6 +115,7 @@ Dữ liệu sau khi đã xóa các cột như: GID, Event Ref ID, Dst Port, Even
 Hình 13: Dữ liệu sau đã xử lý 
 
 2.9 Tạo cột “Intrusion” và mã hóa dữ liệu
+
 Thực hiện mã hóa nhãn cho cột “Message” trong dữ liệu data, sau đó tạo ra cột mới có tên là “Intrusion” để lưu giá trị được mã hóa.
 
  ![image](https://github.com/user-attachments/assets/16c90139-8d08-43b6-bbc9-9f2198e04d0c)
@@ -113,12 +125,14 @@ Hình 14: Hàm mã hóa
 Hình 15: Dữ liệu sau khi mã hóa
 
 2.10 Mã hóa cột có dữ liệu chữ thành số
+
 Mã hóa các cột có định dạng chữ (Protocol) thành số để máy học dễ dàng hiểu được và thuận tiện cho việc nhân tích chập.
 
  ![image](https://github.com/user-attachments/assets/0cad11ad-8450-4c85-a77e-2fa322214e3b)
 Hình 16: Dữ liệu sau khi đã mã hóa one-hot 
 
 2.11 Chia dữ liệu thành 2 phần
+
 Trước tiên ta biến đổi nhãn “Intrusion” thành mảng numpy và gán cho giá trị Y_data. Sau đó ta tạo mảng X_data bằng cách bỏ cột “Intrusion”. Điều này đang chuẩn bị cho các đặc trưng để huấn luyện mô hình. 
 
  ![image](https://github.com/user-attachments/assets/fd7578d5-ed94-46fe-8009-e07dbe651e87)
@@ -131,12 +145,14 @@ Tại đây ta thực hiện phân chia dữ liệu là 80% cho phần train và
 Hình 18: Kết quả sau khi chia dữ liệu
 
 2.12 Chuẩn hóa dữ liệu
+
 Chuẩn hóa dữ liệu là bước cuối cùng trong tiền xử lý dữ liệu và cũng rất quan trọng, nhất là khi mô hình này phụ thuộc vào độ lớn của các đặc trưng. Chuẩn hóa đưa các giá trị đặc trưng về cùng một phạm vi, giúp mô hình học tốt hơn và hội tụ nhanh hơn.
  
  ![image](https://github.com/user-attachments/assets/fbc60721-af84-4bc2-bbbd-a261447de57f)
 Hình 19: Chuẩn hóa dữ liệu 
 
 2.13 Xây dựng mô hình CNN1D
+
 Ta khởi tạo mô hình bằng Sequential (Model = Sequential()), sau đó dùng phương thức add để thêm các layer. Sau khi đưa vào các lớp tạo thành dữ liệu khối, thực hiện duỗi dữ liệu thành vector model.add(Flatten()). Ta tiếp tục thực hiện biến đổi dữ liệu từ nhiều chiều thành 4 chiều model.add(Dense(4)).
  
  ![image](https://github.com/user-attachments/assets/2a4fcac2-6b40-41c3-ad0e-5714ef6e4a53)
