@@ -240,14 +240,21 @@ Hình 27: Biểu đồ thể hiện sự mất mát của tập dữ liệu hu�
 
 
 3. Kết luận và hướng phát triển
+
 Đề tài “nghiên cứu và triển khai thuật toán máy học ứng dụng dò tìm lưu lượng mạng bất thường” đã gợi ý cho nhóm một mô hình huấn luyện dữ liệu để dòm tìm đó là 1D-CNN. Mô hình 1D-CNN có thể xây dựng được các hệ thống phân loại với độ chính xác cao và được lấy cảm hứng từ tế bào thần kinh trong bộ não con người. Cho thấy 1D-CNN là mô hình được sử dụng để nâng cao hiệu quả dự báo và đã được ứng dụng rộng rãi trong đa lĩnh vực. Do đó, nhóm có đề xuất hướng phát triển dựa trên mô hình 1D-CNN đã thực hiện như sau:
 
 3.1 PHẦN LÀM ĐƯỢC
+
 -Import các thư viện deep learning cần thiết trong Python để thực hiện huấn luyện dữ liệu bằng mô hình 1D-CNN
+
 -Tiền xử lý dữ liệu để tạo bộ dataset
+
 -Huấn luyện một dataset 121850 dòng thông qua mô hình 1D-CNN, thực hiện được đánh giá độ chính xác tốt hơn dự đoán.
 
 3.2 HƯỚNG PHÁT TRIỂN
+
 -Cải tiến file log: Lấy thêm dữ liệu cho mô hình học vì hiện tại dữ liệu vẫn còn khá ít chỉ ở mức vài nghìn, nên trong tương lai sẽ cho mô hình học nhiều hơn bằng các lấy thêm file log lên mức vài triệu dữ liệu hoặc nhiều hơn nữa. 
+
 -Cải tiến mô hình 1D-CNN: Tiếp tục thử nghiệm chỉnh sửa mô hình bằng cách thiết kế lại các lớp, thêm các lớp Conv, đảm bảo đạt kết quả chính xác hơn trong tương lai.
+
 -Phát triển tải trực tiếp log mà không cần phải tải thủ công.
