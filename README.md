@@ -96,4 +96,4 @@ from keras.layers import Conv1D, Activation, MaxPooling1D, Flatten, GRU, Average
 ## Author
 
 - Developed by Huynh Quang Loc
-- Email: huynh2uangloc@example.com
+- Email: huynh2uangloc@gmail.com
